@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ignore everything in the root except the "wp-content" directory.
 !wp-content/
 wp-config*.php
@@ -344,7 +345,8 @@ license.txt
 =======
 
 # Editor-based Rest Client
-.idea/
+.idea/httpRequests
 
 # Android studio 3.1+ serialized cache file
-.idea/
+.idea/caches/build_file_checksums.ser
+>>>>>>> dc1f6bd0c1854c4e4a52dafdf93795a90850ca42
