@@ -123,3 +123,7 @@ gen
 !/.gitignore
 readme.html
 license.txt
+!/wp-content/themes/phoenix-v1-06/include/languages/
+!/wp-content/themes/phoenix-v1-06/include/
+!/wp-content/themes/phoenix-v1-06/include/languages
+!/wp-content/themes/phoenix-v1-06/include/languages/phoenix.pot

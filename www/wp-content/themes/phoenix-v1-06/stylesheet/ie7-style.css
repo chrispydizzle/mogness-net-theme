@@ -1,0 +1,20 @@
+span.sf-sub-indicator{ float: none !important; margin: 0px 0px 0px 5px !important; }
+
+/*--- remove foundation padding ---*/
+div.column, div.columns { padding: 0px !important; }
+div.row .row{ margin-right: 0px !important; margin-left: 0px !important; position: relative; }
+div.page-wrapper{ padding-left: 10px !important; padding-right: 10px !important; }
+
+div.port-nav-wrapper{ position: relative; left: 48%; }
+div.port-nav-wrapper .port-nav{ display: block; float: left; }
+div.portfolio-carousel-wrapper{ position: relative; }
+
+div.blog-media-wrapper ul.flex-direction-nav{ height: 0px !important; }
+div.portfolio-media-wrapper ul.flex-direction-nav{ height: 0px !important;  }
+span.portfolio-thumbnail-image-hover,
+span.blog-thumbnail-image-hover{ border: 0px !important; }
+
+div.column-service-row{ border: 0px !important; }
+
+div.header-outer-wrapper{ z-index: 9999; position: relative; }
+div.page-header-wrapper{ z-index: -1; position: relative; }
