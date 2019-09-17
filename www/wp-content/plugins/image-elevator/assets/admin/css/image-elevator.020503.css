@@ -1,0 +1,420 @@
+#wp-content-editor-tools .wp-switch-editor.disabled {
+    color: #ddd;
+}
+
+/**
+* Controller Button
+*/
+
+.button.imgevr-controller {
+    padding: 0px 3px;
+    outline: none;
+    position: relative;
+}
+.imgevr-controller span {
+    width: 25px;
+    height: 20px;
+    display: block;
+    background: url("../img/controller.png") -2px -2px  no-repeat;
+}   
+.imgevr-controller.imgevr-disabled span {
+    background: url("../img/controller.png") -37px -2px  no-repeat;
+}   
+.insert-media + .imgevr-controller {
+    position: relative;
+    margin-left: -3px;
+}
+
+@media screen and (max-width: 782px) {
+    
+    .imgevr-controller span {
+        position: relative;
+        top: 6px;
+    }
+}
+
+/**
+* Dialogs
+*/
+
+.imgevr-dialog {
+    background-color: #fff;
+    
+    border: 1px solid #e1e1e1;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    
+    -webkit-box-shadow: 0 0px 10px 0px rgba(0,0,0,0.09);
+    -moz-box-shadow: 0 0px 10px 0px rgba(0,0,0,0.09);
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.09);
+    
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    left: -28000px;
+    top: -28000px;
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    
+    direction: ltr;
+    z-index: 10200;
+}
+.imgevr-dialog.imgevr-visible {
+    visibility: visible;
+}
+.imgevr-dialog.imgevr-transition {
+    -webkit-transition: top 1s;
+    transition: top 1s;
+}
+
+/**
+* Quick Settings
+*/
+
+#imgevr-quick-settings {
+    width: 360px;
+    padding-top: 10px;
+    margin-left: 8px;   
+    z-index: 10200;
+}
+#imgevr-quick-settings .imgevr-section + .imgevr-section {
+    border-top: 1px solid #f3f3f3;
+}
+#imgevr-quick-settings .imgevr-option + .imgevr-option,
+#imgevr-quick-settings .imgevr-option + .imgevr-sub-option {
+    margin-top: 10px;
+}
+
+#imgevr-quick-settings .imgevr-option label,
+#imgevr-quick-settings .imgevr-option input,
+#imgevr-quick-settings .imgevr-option .imgevr-units {
+    display: inline-block;
+    vertical-align: middle;
+}
+#imgevr-quick-settings .imgevr-option > label + input {
+    margin-left: 3px;
+}
+#imgevr-quick-settings .imgevr-inline-option > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+#imgevr-quick-settings .imgevr-inline-option + .imgevr-inline-option {
+    margin-left: 7px;
+}
+#imgevr-quick-settings .imgevr-sub-option {
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #f9f9f9;
+    padding: 10px;
+}
+
+#imgevr-quick-settings .imgevr-table {
+    display: table;
+    width: 100%; 
+}
+#imgevr-quick-settings .imgevr-row {
+    display: table-row;
+}
+#imgevr-quick-settings .imgevr-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+#imgevr-quick-settings .imgevr-cell + .imgevr-cell {
+    padding-left: 5px;
+}
+#imgevr-quick-settings .imgevr-collapsed {
+    width: 1%;
+    white-space: nowrap;
+}
+#imgevr-quick-settings .imgevr-cell input[type=text] {
+    width: 100%;
+}
+
+#imgevr-quick-settings .imgevr-help {
+    margin-top: 2px;
+    color: #aaa;
+}
+#imgevr-quick-settings label.imgevr-active {
+    font-weight: bold;
+}
+
+#imgevr-quick-settings input[type=text] {
+    width: 100px;
+}
+#imgevr-quick-settings #imgevr-ctrl-max-width, 
+#imgevr-quick-settings #imgevr-ctrl-max-height {
+    width: 45px;
+}
+#imgevr-quick-settings #imgevr-ctrl-compression-size {
+    width: 55px;
+}
+#imgevr-quick-settings #imgevr-ctrl-jpeg-quality {
+    width: 40px; 
+}
+
+#imgevr-quick-settings .imgevr-actions,
+#imgevr-quick-settings .imgevr-section {
+    padding: 10px 20px;
+}
+#imgevr-quick-settings .imgevr-actions {
+    position: relative;
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    text-align: right;
+}
+#imgevr-quick-settings .imgevr-actions .button {
+    margin-right: 3px;
+}
+
+#imgevr-quick-settings #imgevr-btn-manage {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    background-image: url('../img/menu-icon.png');
+    background-repeat: no-repeat;
+    background-position: 8px -34px;
+    padding-left: 30px;
+}
+#imgevr-quick-settings #imgevr-btn-manage.imgevr-active {
+    background-color: #f7f7f7;
+    box-shadow: inset 0 0px 3px 0 rgba(0,0,0,0.1), 0 1px 1px 0 rgba(255,255,255,0.5);
+}
+#imgevr-quick-settings #imgevr-btn-manage .imgevr-deactive,
+#imgevr-quick-settings #imgevr-btn-manage.imgevr-active .imgevr-active {
+    display: inline;
+}
+#imgevr-quick-settings #imgevr-btn-manage .imgevr-active,
+#imgevr-quick-settings #imgevr-btn-manage.imgevr-active .imgevr-deactive {
+    display: none;
+}
+
+#imgevr-quick-settings .imgevr-alert {
+    display: block;
+    background: #fffaea;
+    border-radius: 4px;
+    padding: 5px 7px;
+    outline: none;
+}
+
+/**
+* Quick Settings Corner
+*/
+
+#imgevr-quick-settings-corner {
+    border: 10px solid transparent;
+    border-right: 10px solid #fff;
+    display: none;
+    position: absolute;
+    z-index: 9999;
+}
+
+.qtip2.clipboad-images-error-state {
+    line-height: 145%;
+    max-width: 600px;
+    background-color: #ffebe8;
+    border-color: #c00;
+    color: #333;
+    font-size: 12px;
+}
+
+.clipboad-images-hint-state p {
+    margin: 2px 0px;
+}
+/**
+* Name tooltop
+*/
+
+#clipimg-image-name {
+    position: absolute;
+    dislay: none;
+    background-color: #000;
+    color: #fff;
+    padding: 1px 6px;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    display: none;
+    text-decoration: none;
+    
+    filter: alpha(opacity = 50) !important;
+    opacity: 0.5 !important;
+    
+    -webkit-transition: opacity .5s ease, width .5s ease;
+    -moz-transition: opacity .5s ease, width .5s ease;
+    -ms-transition: opacity .5s ease, width .5s ease;
+    transition: opacity .5s ease, width .5s ease;
+    
+    -webkit-border-top-left-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    border-top-left-radius: 2px;
+    
+    z-index: 10100;
+}
+#clipimg-image-name.no-border-radius {
+    border-radius: 0px;
+}
+#clipimg-image-name:hover {
+    filter: alpha(opacity = 80) !important;
+    opacity: 0.8 !important;
+}
+
+/**
+* Renaming dialog
+*/
+
+.onp-imevr-renaming-dialog {  
+    z-index: 159000 !important;
+    min-width: 400px !important;
+}
+#qtip2-clipimage-renaming-dialog {  
+    max-width: 700px;
+    z-index: 159000 !important;
+}
+.clipimage-renaming-dialog-wrap {
+    padding: 6px 5px;
+    white-space: nowrap;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+.clipimage-renaming-dialog-wrap input {
+    vertical-align: bottom;
+    margin: 0px;
+    line-height: 18px;
+    min-width: 300px;
+    padding: 3px 4px 2px 4px;
+    height: 26px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.clipimage-renaming-dialog-wrap .button {
+    margin-left: 5px;
+    line-height: 23px;
+    height: 26px;
+    vertical-align: bottom;
+}
+.clipimage-renaming-dialog-wrap p {
+    margin: 0px;
+    margin-bottom: 8px;
+}
+#qtip2-overlay {
+    z-index: 158000 !important;
+}
+
+/**
+* Name suggestions
+*/
+
+.clipimages-suggestions-wrap {
+    padding-top: 10px;
+}
+.clipimages-suggestions-list {
+    padding: 10px 0 0 0;
+}
+.clipimages-suggestions-list.loading {
+    background: url("../img/suggestons-loader.gif") 0px 12px no-repeat;
+    padding: 12px 0 20px 0;
+}
+.clipimages-suggestions-list.nothing {
+    font-style: italic;
+    padding: 10px 0;
+}
+.clipimages-suggestions-list ul {
+    padding: 0px;
+    margin: 0px;
+}
+.clipimages-suggestions-list li + li { 
+    margin-top: 6px;
+}
+.clipimages-suggestions-list a {
+    text-decoration: none;
+    border-bottom: 1px dotted #21759b;  
+    display: inline-block;
+    padding-bottom: 1px;
+}
+.clipimages-suggestions-list a:hover {
+    border-bottom: 1px dotted #c00;  
+}
+/**
+* Image overlay for the loading state
+*/
+
+.clipimg-image-overlay, 
+.clipimg-image-overlay-preloader {
+    position: absolute;
+}
+.clipimg-image-overlay.html-is-active, 
+.clipimg-image-overlay-preloader.html-is-active {
+    display: none !important;
+}
+.clipimg-image-overlay {
+    background-color: #fff;
+    opacity: 0.6;
+    z-index: 156000;
+}
+.clipimg-image-overlay-preloader {
+    background: url("../img/circle-preloader.gif") 50% 50% no-repeat;
+    z-index: 157000;
+}
+.clipimg-image-overlay-preloader.done-icon { 
+    background: url("../img/done-icon.png") 50% 50% no-repeat;
+}
+
+/**
+* Confirmation dialog
+*/
+
+#qtip2-imgevr-confirmation-dialog {
+    max-width: 700px;
+    z-index: 159000 !important;
+}
+.imgevr-confirmation-dialog-wrap {
+    padding: 6px 5px;
+    white-space: nowrap;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+.imgevr-confirmation-dialog-wrap p {
+    margin: 5px 0;
+}
+.imgevr-confirmation-dialog-buttons {
+    text-align: right;
+    padding-top: 10px;
+}
+.imgevr-confirmation-dialog-buttons .button + .button {
+    margin-left: 5px;
+}
+
+/**
+* Error dialog
+*/
+
+#qtip2-imgevr-error-dialog {
+    max-width: 700px;
+    z-index: 159000 !important;
+}
+.imgevr-error-dialog-wrap {
+    padding: 6px 5px;
+    white-space: nowrap;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+.imgevr-error-dialog-wrap p {
+    margin: 10px 0;
+}
+
+.settings_page_imgevr_settings .btn-group {
+    border: 0px !important;
+}
+.button.imgevr-get-premium {
+    font-weight: bold;
+    background: #fffaea;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 0 8px #fddf67;
+}

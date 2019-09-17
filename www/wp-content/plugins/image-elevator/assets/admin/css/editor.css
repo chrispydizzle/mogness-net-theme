@@ -1,0 +1,13 @@
+
+img[data-type=preloader] {
+    -moz-box-shadow: none;
+    box-shadow: none;
+    padding-right: 5px;
+}
+
+.drag-and-drop-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: red;
+}
