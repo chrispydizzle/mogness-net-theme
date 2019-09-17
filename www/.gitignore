@@ -1,0 +1,125 @@
+# ignore everything in the root except the "wp-content" directory.
+!wp-content/
+wp-config*.php
+/*.php
+# ignore everything in the "wp-content" directory, except:
+# "mu-plugins", "plugins", "themes" directory
+wp-content/*
+!wp-content/mu-plugins/
+!wp-content/plugins/
+!wp-content/themes/
+
+wp-admin/
+wp-includes/
+upgrade/
+# ignore these plugins
+wp-content/plugins/hello.php
+
+# ignore specific themes
+wp-content/themes/twenty*/
+
+# ignore node dependency directories
+node_modules/
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+codealike.json
+# End of https://www.gitignore.io/api/wordpress
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+cmake-build-*/
+.idea/**/mongoSettings.xml
+*.iws
+out/
+.idea_modules/
+atlassian-ide-plugin.xml
+.idea/replstate.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+.idea/httpRequests
+.idea/caches/build_file_checksums.ser
+.idea
+*.iml
+out
+gen
+/wp-content/themes/Bazar.Shop - Multi-Purpose.e-Commerce.Theme.v1.4.2/
+/wp-content/themes/Bellissima - Responsive.WooCommerce.Template.v4.1/
+/wp-content/themes/BeTheme - Responsive Multi-Purpose WordPress Theme (12)/
+/wp-content/themes/Blue.Diamond - Responsive.Corporate.WP.Theme.v1.05/
+/wp-content/themes/Bolid - Responsive.News.Magazine.and.Blog.Theme.v1.0/
+/wp-content/themes/Boutique.Shop - Responsive.WooCommerce.Theme.v1.4.3/
+/wp-content/themes/Bretheon.Premium.WordPress.Theme.v2.0.1/
+/wp-content/themes/ChurcHope - Responsive.WordPress.Theme.v1.21.1/
+/wp-content/themes/Complexity.Premium.WordPress.Theme.v2.2.3/
+/wp-content/themes/Directory.Portal.Wordpress.Theme.v2.7/
+/wp-content/themes/DynamiX - Premium.Wordpress.Theme.v3.0/
+/wp-content/themes/Ego.Onepage.Parallax.Responsive.WordPress.Theme.v1.7/
+/wp-content/themes/Evermore - Premium.Responsive.WordPress.Theme.v1.0.5/
+/wp-content/themes/Flexform - Retina.Responsive.Multi-Purpose.Theme.v1.3/
+/wp-content/themes/Food.Recipes - WordPress.Theme.v1.2/
+/wp-content/themes/Freely.Premium.WordPress.Theme.v1.1.9/
+/wp-content/themes/Fundify - Crowdfunding.WordPress.Theme.v1.1/
+/wp-content/themes/FUZZY - jQuery.responsive.wordpress.theme.v1.0/
+/wp-content/themes/Hitched - Responsive.Wordpress.Wedding.Theme.v1.5/
+/wp-content/themes/I.Love.It - Content.Sharing.WordPress.Theme.v1.8/
+/wp-content/themes/Impression.Premium.Corporate.Presentation.WP.Theme.v1.14/
+/wp-content/themes/Inovado - Retina.Responsive.Multi-Purpose.Theme.v2.0/
+/wp-content/themes/Inspiration.Responsive.Wordpress.Theme.v1.0.2/
+/wp-content/themes/Jarida - Responsive.WordPress.News.Magazine.Blog.v1.2.1/
+/wp-content/themes/JPhotolio.Responsive.Wedding.Photography.WP.Theme.v4.3.0/
+/wp-content/themes/Kaleido.Responsive.Fullscreen.Studio.v1.2/
+/wp-content/themes/KALLYAS - Responsive.Multi-Purpose.WordPress.Theme.v2.2/
+/wp-content/themes/London.Creative.Portfolio.&.Blog.WP.Theme.v5.0/
+/wp-content/themes/Lovely - Elegant & Simple Blog Theme (1.0.2)/
+/wp-content/themes/MayaShop - A.Flexible.Responsive.e-Commerce.Theme.v1.9.1/
+/wp-content/themes/Multinews - Multi-purpose WordPress News,Magazine (2.5.1)/
+/wp-content/themes/Mural.Business.&.Portfolio.WordPress.Theme.v1.6/
+/wp-content/themes/Nimble - Multipurpose.Retina.Ready.WordPress.Theme.v1.2.2/
+/wp-content/themes/One.Touch - Multifunctional.Metro.Stylish.Theme.v1.9/
+/wp-content/themes/OpenDoor.Responsive.Real.Estate.and.Car.Dealership.v1.4/
+/wp-content/themes/Osage - Multi-Use WordPress Magazine Theme (1.13.1)/
+/wp-content/themes/Phoenix - Clean.Responsive.Wordpress.Theme.v1.06/
+/wp-content/themes/Pindol.Premium.WordPress.Theme.v1.1.0/
+/wp-content/themes/Pinpoint - Responsive.Multi-Purpose.WP.Theme.v1.5/
+/wp-content/themes/Radial - Premium.Automotive.&.Tech.WordPress.Theme.v2.0/
+/wp-content/themes/Responsive.Fullscreen.Studio.v2.5/
+/wp-content/themes/Responsive Supermarket Online Theme - Oswad (1.2.1)/
+/wp-content/themes/rite.Minimal.Responsive.Blog.v1.1.4/
+/wp-content/themes/RT-Theme.17.Responsive.Wordpress.Theme.v2.3/
+/wp-content/themes/Scalia - Multi-Concept Business, Shop, One-Page, Blog Theme (1.4.0)/
+/wp-content/themes/Skinizer - Multipurpose.WordPress.Theme.v1.0.4/
+/wp-content/themes/SmartIT.Premium.Responsive.WordPress.Theme.v1.1.2/
+/wp-content/themes/Sommerce.Shop - A.Versatile.E-commerce.Theme.v2.5.1/
+/wp-content/themes/SuperMassive.Professional.WordPress.BuddyPress.Theme.v4.5/
+/wp-content/themes/Symplex.Premium.&.Portfolio.Theme.for.Creative.v1.9.4/
+/wp-content/themes/Terra - Responsive.Multi-Purpose.Wordpress.Templete.v1.1/
+/wp-content/themes/The.Agency.v2.1/
+/wp-content/themes/U-Design.WordPress.Theme.v2.0/
+/wp-content/themes/Victoria.Premium.Restaurant.Wordpress.Theme.v2.1/
+/wp-content/themes/Viroshop - A.Modern.Responsive.WooCommerce.Theme.v2.6/
+/wp-content/themes/WildCommunity - BuddyPress.Theme.v1.1.5/
+/wp-content/upgrade/
+.sass-cache/
+/wp-includes/
+/wp-admin/
+!/.gitignore
+readme.html
+license.txt
