@@ -1,5 +1,7 @@
 <?php
 
+use Automattic\Jetpack\Sync\Sender;
+
 if (
 	!defined( 'WP_UNINSTALL_PLUGIN' )
 	||
@@ -11,22 +13,26 @@ if (
 	exit;
 }
 
-define( 'JETPACK__PLUGIN_DIR', plugin_dir_path( __FILE__ )  );
+if ( ! defined( 'JETPACK__PLUGIN_DIR' ) ) {
+	define( 'JETPACK__PLUGIN_DIR', plugin_dir_path( __FILE__ )  );
+}
 
-// Delete all compact options
-delete_option( 'jetpack_options'        );
+require JETPACK__PLUGIN_DIR . 'vendor/autoload_packages.php';
 
-// Delete all non-compact options
-delete_option( 'jetpack_register'       );
-delete_option( 'jetpack_activated'      );
-delete_option( 'jetpack_active_modules' );
-delete_option( 'jetpack_do_activate'    );
+Jetpack_Options::delete_all_known_options();
 
 // Delete all legacy options
 delete_option( 'jetpack_was_activated'  );
 delete_option( 'jetpack_auto_installed' );
+delete_option( 'jetpack_register'       );
 delete_transient( 'jetpack_register'    );
 
+// Delete sync options
+//
+// Do not initialize any listeners.
+// Since all the files will be deleted.
+// No need to try to sync anything.
+add_filter( 'jetpack_sync_modules', '__return_empty_array', 100 );
+
 // Jetpack Sync
-require_once JETPACK__PLUGIN_DIR . 'sync/class.jetpack-sync-sender.php';
-Jetpack_Sync_Sender::get_instance()->uninstall();
+Sender::get_instance()->uninstall();

@@ -1,5 +1,7 @@
 <?php
 
+use Automattic\Jetpack\Assets;
+
 /*
  * Put the following code in your theme's Food Menu Page Template to customize the markup of the menu.
 
@@ -51,7 +53,7 @@ class Nova_Restaurant {
 		static $instance = false;
 
 		if ( !$instance ) {
-			$instance = new Nova_Restaurant;
+			$instance = new Nova_Restaurant();
 		}
 
 		if ( $menu_item_loop_markup ) {
@@ -70,10 +72,6 @@ class Nova_Restaurant {
 		add_action( 'admin_menu',            array( $this, 'add_admin_menus'      ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_nova_styles'  ) );
 		add_action( 'admin_head',            array( $this, 'set_custom_font_icon' ) );
-
-		// Enable Omnisearch for Menu Items.
-		if ( class_exists( 'Jetpack_Omnisearch_Posts' ) )
-			new Jetpack_Omnisearch_Posts( self::MENU_ITEM_POST_TYPE );
 
 		// Always sort menu items correctly
 		add_action( 'parse_query',   array( $this, 'sort_menu_item_queries_by_menu_order'    ) );
@@ -282,7 +280,7 @@ class Nova_Restaurant {
 			8  => sprintf( __( 'Menu item submitted. <a target="_blank" href="%s">Preview item</a>', 'jetpack' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
 			/* translators: this is about a food menu */
 			9  => sprintf( __( 'Menu item scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview item</a>', 'jetpack' ),
-			// translators: Publish box date format, see http://php.net/date
+			// translators: Publish box date format, see https://php.net/date
 			date_i18n( __( 'M j, Y @ G:i', 'jetpack' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post->ID) ) ),
 			/* translators: this is about a food menu */
 			10 => sprintf( __( 'Menu item draft updated. <a target="_blank" href="%s">Preview item</a>', 'jetpack' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
@@ -311,11 +309,10 @@ class Nova_Restaurant {
 	 * Change ‘Enter Title Here’ text for the Menu Item.
 	 */
 	function change_default_title( $title ) {
-		$screen = get_current_screen();
-
-		if ( self::MENU_ITEM_POST_TYPE == $screen->post_type )
+		if ( self::MENU_ITEM_POST_TYPE == get_post_type() ) {
 			/* translators: this is about a food menu */
 			$title = esc_html__( "Enter the menu item's name here", 'jetpack' );
+		}
 
 		return $title;
 	}
@@ -433,13 +430,25 @@ class Nova_Restaurant {
 		add_action( 'current_screen', array( $this, 'current_screen_load' ) );
 
 		//Adjust 'Add Many Items' submenu position
-		$submenu_item = array_pop( $GLOBALS['submenu']['edit.php?post_type=' . self::MENU_ITEM_POST_TYPE] );
-		$GLOBALS['submenu']['edit.php?post_type=' . self::MENU_ITEM_POST_TYPE][11] = $submenu_item;
-		ksort( $GLOBALS['submenu']['edit.php?post_type=' . self::MENU_ITEM_POST_TYPE] );
+		if ( isset( $GLOBALS['submenu']['edit.php?post_type=' . self::MENU_ITEM_POST_TYPE] ) ) {
+			$submenu_item = array_pop( $GLOBALS['submenu']['edit.php?post_type=' . self::MENU_ITEM_POST_TYPE] );
+			$GLOBALS['submenu']['edit.php?post_type=' . self::MENU_ITEM_POST_TYPE][11] = $submenu_item;
+			ksort( $GLOBALS['submenu']['edit.php?post_type=' . self::MENU_ITEM_POST_TYPE] );
+		}
+
 
 		$this->setup_menu_item_columns();
 
-		wp_register_script( 'nova-menu-checkboxes', plugins_url( 'js/menu-checkboxes.js', __FILE__ ), array( 'jquery' ), $this->version, true );
+		wp_register_script(
+			'nova-menu-checkboxes',
+			Assets::get_file_url_for_environment(
+				'_inc/build/custom-post-types/js/menu-checkboxes.min.js',
+				'modules/custom-post-types/js/menu-checkboxes.js'
+			),
+			array( 'jquery' ),
+			$this->version,
+			true
+		);
 	}
 
 
@@ -607,7 +616,17 @@ class Nova_Restaurant {
 
 		$this->maybe_reorder_menu_items();
 
-		wp_enqueue_script( 'nova-drag-drop', plugins_url( 'js/nova-drag-drop.js', __FILE__ ), array( 'jquery-ui-sortable' ), $this->version, true );
+		wp_enqueue_script(
+			'nova-drag-drop',
+			Assets::get_file_url_for_environment(
+				'_inc/build/custom-post-types/js/nova-drag-drop.min.js',
+				'modules/custom-post-types/js/nova-drag-drop.js'
+			),
+			array( 'jquery-ui-sortable' ),
+			$this->version,
+			true
+		);
+
 		wp_localize_script( 'nova-drag-drop', '_novaDragDrop', array(
 			'nonce'       => wp_create_nonce( 'drag-drop-reorder' ),
 			'nonceName'   => 'drag-drop-reorder',
@@ -844,7 +863,16 @@ class Nova_Restaurant {
 	}
 
 	function enqueue_many_items_scripts() {
-		wp_enqueue_script( 'nova-many-items', plugins_url( 'js/many-items.js', __FILE__ ), array( 'jquery' ), $this->version, true );
+		wp_enqueue_script(
+			'nova-many-items',
+			Assets::get_file_url_for_environment(
+				'_inc/build/custom-post-types/js/many-items.min.js',
+				'modules/custom-post-types/js/many-items.js'
+			),
+			array( 'jquery' ),
+			$this->version,
+			true
+		);
 	}
 
 	function process_form_request() {
@@ -869,7 +897,7 @@ class Nova_Restaurant {
 				'post_title'   => $_POST['nova_title'][$key],
 				'tax_input'    => array(
 					self::MENU_ITEM_LABEL_TAX => $_POST['nova_labels'][$key],
-					self::MENU_TAX            => $_POST['nova_menu_tax'],
+					self::MENU_TAX            => isset( $_POST['nova_menu_tax'] ) ? $_POST['nova_menu_tax'] : null,
 				),
 			);
 
@@ -1185,11 +1213,29 @@ class Nova_Restaurant {
 	/**
 	 * Outputs a Menu Item Markup element opening tag
 	 *
-	 * @param string $field - Menu Item Markup settings field
+	 * @param string $field - Menu Item Markup settings field.
 	 */
 	function menu_item_loop_open_element( $field ) {
 		$markup = $this->get_menu_item_loop_markup();
-		echo '<' . tag_escape( $markup["{$field}_tag"] ) .  $this->menu_item_loop_class( $markup["{$field}_class"] ) . ">\n";
+		/**
+		 * Filter a menu item's element opening tag.
+		 *
+		 * @module custom-content-types
+		 *
+		 * @since 4.4.0
+		 *
+		 * @param string       $tag    Menu item's element opening tag.
+		 * @param string       $field  Menu Item Markup settings field.
+		 * @param array        $markup Array of markup elements for the menu item.
+		 * @param false|object $term   Taxonomy term for current menu item.
+		 */
+		echo apply_filters(
+			'jetpack_nova_menu_item_loop_open_element',
+			'<' . tag_escape( $markup["{$field}_tag"] ) . $this->menu_item_loop_class( $markup["{$field}_class"] ) . ">\n",
+			$field,
+			$markup,
+			$this->menu_item_loop_current_term
+		);
 	}
 
 	/**
@@ -1199,21 +1245,55 @@ class Nova_Restaurant {
 	 */
 	function menu_item_loop_close_element( $field ) {
 		$markup = $this->get_menu_item_loop_markup();
-		echo '</' . tag_escape( $markup["{$field}_tag"] ) . ">\n";
+		/**
+		 * Filter a menu item's element closing tag.
+		 *
+		 * @module custom-content-types
+		 *
+		 * @since 4.4.0
+		 *
+		 * @param string       $tag    Menu item's element closing tag.
+		 * @param string       $field  Menu Item Markup settings field.
+		 * @param array        $markup Array of markup elements for the menu item.
+		 * @param false|object $term   Taxonomy term for current menu item.
+		 */
+		echo apply_filters(
+			'jetpack_nova_menu_item_loop_close_element',
+			'</' . tag_escape( $markup["{$field}_tag"] ) . ">\n",
+			$field,
+			$markup,
+			$this->menu_item_loop_current_term
+		);
 	}
 
 	/**
-	 * Returns a Menu Item Markup element's class attribute
+	 * Returns a Menu Item Markup element's class attribute.
 	 *
-	 * @param string $class
-	 * @return string HTML class attribute with leading whitespace
+	 * @param  string $class Class name.
+	 * @return string HTML   class attribute with leading whitespace.
 	 */
 	function menu_item_loop_class( $class ) {
-		if ( !$class ) {
+		if ( ! $class ) {
 			return '';
 		}
 
-		return ' class="' . esc_attr( $class ) . '"';
+		/**
+		 * Filter a menu Item Markup element's class attribute.
+		 *
+		 * @module custom-content-types
+		 *
+		 * @since 4.4.0
+		 *
+		 * @param string       $tag    Menu Item Markup element's class attribute.
+		 * @param string       $class  Menu Item Class name.
+		 * @param false|object $term   Taxonomy term for current menu item.
+		 */
+		return apply_filters(
+			'jetpack_nova_menu_item_loop_class',
+			' class="' . esc_attr( $class ) . '"',
+			$class,
+			$this->menu_item_loop_current_term
+		);
 	}
 }
 

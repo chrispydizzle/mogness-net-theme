@@ -1,5 +1,4 @@
 <?php
-
 /**
  * CSSTidy - CSS Parser and Optimiser
  *
@@ -21,9 +20,9 @@
  *   GNU Lesser General Public License for more details.
  *
  *   You should have received a copy of the GNU Lesser General Public License
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- * @license http://opensource.org/licenses/lgpl-license.php GNU Lesser General Public License
+ * @license https://opensource.org/licenses/lgpl-license.php GNU Lesser General Public License
  * @package csstidy
  * @author Florian Schmitz (floele at gmail dot com) 2005-2007
  * @author Brett Zamir (brettz9 at yahoo dot com) 2007
@@ -74,6 +73,10 @@ class csstidy_print {
 		$this->charset = & $css->charset;
 		$this->import = & $css->import;
 		$this->namespace = & $css->namespace;
+	}
+
+	function csstidy_print(&$css) {
+		$this->__construct($css);
 	}
 
 	/**
@@ -197,7 +200,6 @@ class csstidy_print {
 				$output .= $template[0] . '@import ' . $template[5] . $this->import[$i] . $template[6];
 			}
 		}
-
 		if (!empty($this->namespace)) {
 			if (substr($this->namespace, 0, 4) === 'url(' && substr($this->namespace, -1, 1) === ')') {
 				$this->namespace = '\'' . substr($this->namespace, 4, -1) . '\'';

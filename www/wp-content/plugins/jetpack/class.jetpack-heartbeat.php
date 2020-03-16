@@ -1,5 +1,7 @@
 <?php
 
+use Automattic\Jetpack\Connection\Manager;
+
 class Jetpack_Heartbeat {
 
 	/**
@@ -114,12 +116,19 @@ class Jetpack_Heartbeat {
 		$return["{$prefix}language"]       = get_bloginfo( 'language' );
 		$return["{$prefix}charset"]        = get_bloginfo( 'charset' );
 		$return["{$prefix}is-multisite"]   = is_multisite() ? 'multisite' : 'singlesite';
-		$return["{$prefix}identitycrisis"] = Jetpack::check_identity_crisis( 1 ) ? 'yes' : 'no';
+		$return["{$prefix}identitycrisis"] = Jetpack::check_identity_crisis() ? 'yes' : 'no';
 		$return["{$prefix}plugins"]        = implode( ',', Jetpack::get_active_plugins() );
+		$return["{$prefix}manage-enabled"] = true;
 
-		$return["{$prefix}single-user-site"]= Jetpack::is_single_user_site();
+		$xmlrpc_errors = Jetpack_Options::get_option( 'xmlrpc_errors', array() );
+		if ( $xmlrpc_errors ) {
+			$return["{$prefix}xmlrpc-errors"] = implode( ',', array_keys( $xmlrpc_errors ) );
+			Jetpack_Options::delete_option( 'xmlrpc_errors' );
+		}
 
-		$return["{$prefix}manage-enabled"] = Jetpack::is_module_active( 'manage' );
+		// Missing the connection owner?
+		$connection_manager = new Manager();
+		$return["{$prefix}missing-owner"] = $connection_manager->is_missing_connection_owner();
 
 		// is-multi-network can have three values, `single-site`, `single-network`, and `multi-network`
 		$return["{$prefix}is-multi-network"] = 'single-site';
@@ -139,16 +148,20 @@ class Jetpack_Heartbeat {
 			$return["{$prefix}module-{$slug}"] = Jetpack::is_module_active( $slug ) ? 'on' : 'off';
 		}
 
-		require_once dirname(__FILE__).'/sync/class.jetpack-sync-wp-replicastore.php';
-		$store = new Jetpack_Sync_WP_Replicastore();
-		$return["{$prefix}sync-checksum"] = json_encode( $store->checksum_all() );
-
 		return $return;
 	}
 
 	public static function jetpack_xmlrpc_methods( $methods ) {
-		$methods['jetpack.getHeartbeatData'] = array( __CLASS__, 'generate_stats_array' );
+		$methods['jetpack.getHeartbeatData'] = array( __CLASS__, 'xmlrpc_data_response' );
 		return $methods;
+	}
+
+	public static function xmlrpc_data_response( $params = array() ) {
+		// The WordPress XML-RPC server sets a default param of array()
+		// if no argument is passed on the request and the method handlers get this array in $params.
+		// generate_stats_array() needs a string as first argument.
+		$params = empty( $params ) ? '' : $params;
+		return self::generate_stats_array( $params );
 	}
 
 	public function deactivate() {

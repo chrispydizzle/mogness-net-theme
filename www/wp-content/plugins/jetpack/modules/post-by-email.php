@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Module Name: Post by Email
- * Module Description: Publish posts by sending an email.
+ * Module Name: Post by email
+ * Module Description: Publish posts by sending an email
  * First Introduced: 2.0
  * Sort Order: 14
  * Requires Connection: Yes
- * Auto Activate: Yes
+ * Auto Activate: No
  * Module Tags: Writing
  * Feature: Writing
  * Additional Search Queries: post by email, email
@@ -15,7 +15,6 @@
 add_action( 'jetpack_modules_loaded', array( 'Jetpack_Post_By_Email', 'init' ) );
 
 Jetpack::enable_module_configurable( __FILE__ );
-Jetpack::module_configuration_load( __FILE__, array( 'Jetpack_Post_By_Email', 'configuration_redirect' ) );
 
 class Jetpack_Post_By_Email {
 	public static function init() {
@@ -30,11 +29,6 @@ class Jetpack_Post_By_Email {
 
 	function __construct() {
 		add_action( 'init', array( &$this, 'action_init' ) );
-	}
-
-	static function configuration_redirect() {
-		wp_safe_redirect( get_edit_profile_url( get_current_user_id() ) . '#post-by-email' );
-		exit;
 	}
 
 	function action_init() {
@@ -105,7 +99,7 @@ class Jetpack_Post_By_Email {
 					<div id="jp-pbe-info"<?php echo $info_hidden; ?>>
 						<p id="jp-pbe-email-wrapper">
 							<input type="text" id="jp-pbe-email" value="<?php echo esc_attr( $email ); ?>" readonly="readonly" class="regular-text" />
-							<span class="description"><a target="_blank" href="http://jetpack.com/support/post-by-email/"><?php esc_html_e( 'More information', 'jetpack' ); ?></a></span>
+							<span class="description"><a target="_blank" href="https://jetpack.com/support/post-by-email/"><?php esc_html_e( 'More information', 'jetpack' ); ?></a></span>
 						</p>
 						<p>
 							<input type="button" name="jp-pbe-regenerate" id="jp-pbe-regenerate" class="button" value="<?php esc_attr_e( 'Regenerate Address', 'jetpack' ); ?> " />
@@ -123,7 +117,7 @@ class Jetpack_Post_By_Email {
 						<?php echo esc_html( wptexturize( __( "If you don't have a WordPress.com account yet, you can sign up for free in just a few seconds.", 'jetpack' ) ) ); ?>
 					</p>
 					<p>
-						<a href="<?php echo $jetpack->build_connect_url( false, get_edit_profile_url( get_current_user_id() ) . '#post-by-email' ); ?>" class="button button-connector" id="wpcom-connect"><?php esc_html_e( 'Link account with WordPress.com', 'jetpack' ); ?></a>
+						<a href="<?php echo $jetpack->build_connect_url( false, get_edit_profile_url( get_current_user_id() ) . '#post-by-email', 'unlinked-user-pbe' ); ?>" class="button button-connector" id="wpcom-connect"><?php esc_html_e( 'Link account with WordPress.com', 'jetpack' ); ?></a>
 					</p>
 					<?php
 				} ?>
@@ -135,7 +129,6 @@ class Jetpack_Post_By_Email {
 	}
 
 	function get_post_by_email_address() {
-		Jetpack::load_xml_rpc_client();
 		$xml = new Jetpack_IXR_Client( array(
 			'user_id' => get_current_user_id(),
 		) );
@@ -173,19 +166,19 @@ class Jetpack_Post_By_Email {
 	}
 
 	/**
-	 * Backend function to abstract the xmlrpc function calls to wpcom.
+	 * Back end function to abstract the xmlrpc function calls to wpcom.
 	 *
 	 * @param $endpoint
 	 * @param $error_message
 	 */
-	function __process_ajax_proxy_request( $endpoint, $error_message ) {
+	function __process_ajax_proxy_request( $endpoint, $error_message ) { // phpcs:ignore
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			wp_send_json_error( $error_message );
 		}
 		if ( empty( $_REQUEST['pbe_nonce'] ) || ! wp_verify_nonce( $_REQUEST['pbe_nonce'], $endpoint ) ) {
 			wp_send_json_error( $error_message );
 		}
-		Jetpack::load_xml_rpc_client();
+
 		$xml = new Jetpack_IXR_Client( array(
 			'user_id' => get_current_user_id(),
 		) );

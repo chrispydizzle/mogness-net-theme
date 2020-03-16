@@ -28,11 +28,23 @@
 <footer id="colophon" role="contentinfo">
 	<div id="site-generator">
 
-<?php
-	global $wp;
-	$current_url =  trailingslashit( home_url( add_query_arg( array(), $wp->request ) ) );
-?>
-		<a href="<?php echo $current_url . '?ak_action=reject_mobile'; ?>"><?php _e( 'View Full Site', 'jetpack' ); ?></a><br />
+		<?php
+			/*
+			 * Construct "$target_url", which adds "ak_action=reject_mobile"
+			 * to the current URL.
+			 */
+			global $wp;
+			$url_params = array(
+				'ak_action' => 'reject_mobile',
+			);
+			if ( is_array( $_GET ) && ! empty( $_GET ) ) {
+				$url_params[] = $_GET;
+			}
+			$target_url = home_url( add_query_arg( $url_params, $wp->request ) );
+		?>
+
+		<a href="<?php echo esc_url( $target_url ); ?>"><?php _e( 'View Full Site', 'jetpack' ); ?></a>
+		<br />
 
 		<?php
 			/**
@@ -56,7 +68,7 @@
 			do_action( 'minileven_credits' );
 		?>
 
-		<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'jetpack' ) ); ?>" target="_blank" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'jetpack' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'jetpack' ), 'WordPress' ); ?></a>
+		<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'jetpack' ) ); ?>" rel="noopener noreferrer" target="_blank" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'jetpack' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'jetpack' ), 'WordPress' ); ?></a>
 	</div>
 </footer><!-- #colophon -->
 

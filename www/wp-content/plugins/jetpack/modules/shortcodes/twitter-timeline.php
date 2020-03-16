@@ -1,6 +1,18 @@
 <?php
-add_shortcode( 'twitter-timeline', 'twitter_timeline_shortcode' );
+/**
+ * Twitter Timeline Shortcode.
+ *
+ * Examples:
+ * [twitter-timeline username=jetpack]
+ *
+ * @package Jetpack
+ */
 
+/**
+ * Render the Twitter shortcode.
+ *
+ * @param array $atts Shortcode attributes.
+ */
 function twitter_timeline_shortcode( $atts ) {
 	$default_atts = array(
 		'username' => '',
@@ -19,6 +31,11 @@ function twitter_timeline_shortcode( $atts ) {
 
 	$output = '<a class="twitter-timeline"';
 
+	/** This filter is documented in modules/shortcodes/tweet.php */
+	$partner = apply_filters( 'jetpack_twitter_partner_id', 'jetpack' );
+	if ( ! empty( $partner ) ) {
+		$output .= ' data-partner="' . esc_attr( $partner ) . '"';
+	}
 	if ( is_numeric( $atts['width'] ) ) {
 		$output .= ' data-width="' . esc_attr( $atts['width'] ) . '"';
 	}
@@ -34,7 +51,11 @@ function twitter_timeline_shortcode( $atts ) {
 
 	$output .= '>';
 
-	$output .= sprintf( __( 'Tweets by @%s', 'jetpack' ), $atts['username'] );
+	$output .= sprintf(
+		/* Translators: placeholder is a Twitter username. */
+		__( 'Tweets by @%s', 'jetpack' ),
+		$atts['username']
+	);
 
 	$output .= '</a>';
 
@@ -42,7 +63,11 @@ function twitter_timeline_shortcode( $atts ) {
 
 	return $output;
 }
+add_shortcode( 'twitter-timeline', 'twitter_timeline_shortcode' );
 
+/**
+ * Enqueue the js used by the Twitter shortcode.
+ */
 function twitter_timeline_js() {
 	if ( is_customize_preview() ) {
 		wp_enqueue_script( 'jetpack-twitter-timeline' );

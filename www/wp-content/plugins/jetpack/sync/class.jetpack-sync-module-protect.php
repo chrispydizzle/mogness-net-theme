@@ -1,15 +1,5 @@
 <?php
-
 /**
- * logs bruteprotect failed logins via sync
+ * Deprecated since 7.5
  */
-class Jetpack_Sync_Module_Protect extends Jetpack_Sync_Module {
-
-	function name() {
-		return 'protect';
-	}
-
-	function init_listeners( $callback ) {
-		add_action( 'jpp_log_failed_attempt', $callback );
-	}
-}
+_deprecated_file( basename( __FILE__ ), 'jetpack-7.5' );
