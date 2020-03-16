@@ -8,7 +8,6 @@ wp-content/*
 !wp-content/mu-plugins/
 !wp-content/plugins/
 !wp-content/themes/
-
 wp-admin/
 wp-includes/
 upgrade/
@@ -101,7 +100,6 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -204,13 +202,10 @@ gen
 .idea/**/shelf
 <<<<<<< HEAD
 .idea/**/contentModel.xml
-=======
 
 # Generated files
-.idea/**/contentModel.xml
 
 # Sensitive or high-churn files
->>>>>>> dc1f6bd0c1854c4e4a52dafdf93795a90850ca42
 .idea/**/dataSources/
 .idea/**/dataSources.ids
 .idea/**/dataSources.local.xml
@@ -218,7 +213,6 @@ gen
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
-<<<<<<< HEAD
 .idea/**/gradle.xml
 .idea/**/libraries
 cmake-build-*/
@@ -228,11 +222,8 @@ out/
 .idea_modules/
 atlassian-ide-plugin.xml
 .idea/replstate.xml
-=======
 
 # Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
@@ -245,39 +236,26 @@ atlassian-ide-plugin.xml
 # *.ipr
 
 # CMake
-cmake-build-*/
 
 # Mongo Explorer plugin
-.idea/**/mongoSettings.xml
 
 # File-based project format
-*.iws
 
 # IntelliJ
-out/
 
 # mpeltonen/sbt-idea plugin
-.idea_modules/
 
 # JIRA plugin
-atlassian-ide-plugin.xml
 
 # Cursive Clojure plugin
-.idea/replstate.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
->>>>>>> dc1f6bd0c1854c4e4a52dafdf93795a90850ca42
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
-<<<<<<< HEAD
 .idea/httpRequests
 .idea/caches/build_file_checksums.ser
-.idea
-*.iml
-out
-gen
 /wp-content/themes/Bazar.Shop - Multi-Purpose.e-Commerce.Theme.v1.4.2/
 /wp-content/themes/Bellissima - Responsive.WooCommerce.Template.v4.1/
 /wp-content/themes/BeTheme - Responsive Multi-Purpose WordPress Theme (12)/
@@ -341,11 +319,10 @@ gen
 !/.gitignore
 readme.html
 license.txt
-=======
 
 # Editor-based Rest Client
 .idea/
 
 # Android studio 3.1+ serialized cache file
-.idea/
 
+/www/files/

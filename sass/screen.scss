@@ -1,0 +1,49 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignleft {
+  float: left;
+}
+
+.alignright {
+  float: right;
+}
+
+.wp-caption {
+  background: #f1f1f1;
+  line-height: 18px;
+  margin-bottom: 20px;
+  padding: 4px;
+  text-align: center;
+}
+
+.wp-caption-text {
+  color: #888;
+  font-size: 12px;
+  margin: 5px;
+}
+
+.gallery-caption {
+  color: #888;
+  font-size: 12px;
+  margin: 0 0 12px;
+}
+
+.sticky {
+  font-weight: normal;
+}
+
+.bypostauthor {
+  font-weight: normal;
+}
