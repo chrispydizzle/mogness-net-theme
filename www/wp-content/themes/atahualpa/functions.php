@@ -851,8 +851,7 @@ function bfa_enqueue_scripts() {
 	$templateURI = get_template_directory_uri(); 
 
 	
-	if ( !is_admin() ) { 
-		
+	if ( !is_admin() ) {
 		wp_enqueue_script('jquery');
 
 		if ($bfa_ata['pngfix_selectors'] != "" AND $isIE6 = TRUE) 

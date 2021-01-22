@@ -1,0 +1,406 @@
+/*
+Theme Name: SMNTCS Retro
+Theme URI: https://github.com/nielslange/retro/
+Author: Niels Lange
+Author URI: https://nielslange.de/
+Description: SMNTCS Retro is a minimalistic theme for the average nerd.
+Version: 1.7
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: smntcs-retro
+Tags: blog, one-column, custom-menu, featured-images, footer-widgets, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+*/
+
+/*******************************************************************************
+ *
+ * TABLE OF CONTENTS
+ *
+ * 0. Normalize styles
+ * 1. Document styles
+ * 2. Required styles
+ * 3. Block styles
+ * 4. Header
+ * 5. Menus
+ * 6. Pages
+ * 7. Posts
+ * 8. Footer
+ *
+ ******************************************************************************/
+
+/*******************************************************************************
+ * 0. Normalize styles
+ ******************************************************************************/
+
+@import "assets/css/normalize.css";
+
+/*******************************************************************************
+ * 1. Document styles
+ ******************************************************************************/
+
+:root {
+
+	/* Polar Night */
+	--nord0: #2e3440;
+	--nord1: #3b4252;
+	--nord2: #434c5e;
+	--nord3: #4c566a;
+
+	/* Snow Storm */
+	--nord4: #d8dee9;
+	--nord5: #e5e9f0;
+	--nord6: #eceff4;
+
+	/* Frost */
+	--nord7: #8fbcbb;
+	--nord8: #88c0d0;
+	--nord9: #81a1c1;
+	--nord10: #5e81ac;
+
+	/* Aurora */
+	--nord11: #bf616a;
+	--nord12: #d08770;
+	--nord13: #ebcb8b;
+	--nord14: #a3be8c;
+	--nord15: #b48ead;
+}
+
+@font-face {
+	font-family: Hack;
+	src: url(./assets/fonts/hack-regular.woff2?sha=3114f1256) format("woff2"), url(./assets/fonts/hack-regular.woff?sha=3114f1256) format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Hack;
+	src: url(./assets/fonts/hack-bold.woff2?sha=3114f1256) format("woff2"), url(./assets/fonts/hack-bold.woff?sha=3114f1256) format("woff");
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Hack;
+	src: url(./assets/fonts/hack-italic.woff2?sha=3114f1256) format("woff2"), url(./assets/fonts/hack-italic.woff?sha=3114f1256) format("woff");
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: Hack;
+	src: url(./assets/fonts/hack-bolditalic.woff2?sha=3114f1256) format("woff2"), url(./assets/fonts/hack-bolditalic.woff?sha=3114f1256) format("woff");
+	font-weight: 700;
+	font-style: italic;
+}
+
+html {
+	font-size: 62.5%;
+
+	/* 1rem = 10px */
+}
+
+body {
+	background: var(--nord0);
+	box-sizing: content-box;
+	color: var(--nord9);
+	font-family: Hack, monospace;
+	font-size: 1.3rem;
+	line-height: 1.4;
+	text-align: left;
+	padding: 1rem 2rem;
+	max-width: 580px;
+	-webkit-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	-webkit-font-smoothing: antialiased;
+	word-break: break-word;
+	word-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--nord4);
+	font-weight: 400;
+	font-size: 1.8rem;
+	line-height: normal;
+	-webkit-margin-after: 2rem;
+	margin-block-end: 2rem;
+	-webkit-margin-before: 2rem;
+	margin-block-start: 2rem;
+}
+
+a {
+	color: var(--nord4);
+	text-decoration: none;
+	border-bottom: 1px dotted;
+}
+
+a:focus,
+a:hover {
+	border-bottom: 1px solid;
+}
+
+hr {
+	margin: 2rem 0;
+	clear: both;
+	color: transparent;
+	border-color: transparent;
+	background-color: transparent;
+	border-top: 1px solid var(--nord3);
+}
+
+/*******************************************************************************
+ * 2. Required styles
+ ******************************************************************************/
+
+.wp-caption {
+	color: var(--nord4);
+}
+
+.wp-caption-text {
+	color: var(--nord4);
+}
+
+.sticky {
+	background: var(--nord1);
+	border: 1px solid var(--nord2);
+	padding: 1em;
+	margin: 0 -1em;
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+	word-break: normal;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	-webkit-clip-path: none;
+	clip-path: none;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	right: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}
+
+.gallery-caption {
+	color: var(--nord4);
+}
+
+.bypostauthor {
+	display: block;
+}
+
+.alignright {
+	float: right;
+	margin-left: 1em;
+}
+
+.alignleft {
+	float: left;
+	margin-right: 1em;
+}
+
+.aligncenter {
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+	clear: both;
+}
+
+/*******************************************************************************
+ * 3. Block styles
+ ******************************************************************************/
+
+.wp-block-image figcaption {
+	color: var(--nord4);
+}
+
+figure {
+	-webkit-margin-before: 0;
+	margin-block-start: 0;
+	-webkit-margin-after: 0;
+	margin-block-end: 0;
+	-webkit-margin-start: 0;
+	margin-inline-start: 0;
+	-webkit-margin-end: 0;
+	margin-inline-end: 0;
+}
+
+/*******************************************************************************
+ * 4. Header
+ ******************************************************************************/
+
+#site-title h1,
+#site-title h2 {
+	color: var(--nord4);
+	margin-bottom: 0.5em;
+}
+
+#site-description h2 {
+	color: var(--nord4);
+	margin: 0 0 0.5rem;
+}
+
+/*******************************************************************************
+ * 5. Menus
+ ******************************************************************************/
+
+.menu {
+	margin: 1em 0;
+	padding: 0;
+	list-style-type: none;
+	list-style-image: none;
+}
+
+.menu li {
+	display: inline;
+	margin-right: 0.5rem;
+}
+
+.menu li:last-of-type::after {
+	content: none;
+}
+
+article p:first-of-type {
+	margin-top: 0.5rem;
+}
+
+#header-menu {
+	margin-top: 0.5rem;
+}
+
+/*******************************************************************************
+ * 6. Pages
+ ******************************************************************************/
+
+/*******************************************************************************
+ * 7. Posts
+ ******************************************************************************/
+
+/* Articles ************************************/
+#site-content-posts article {
+	margin: 2em 0 4em;
+}
+
+#site-content-posts article img {
+	max-width: 100%;
+}
+
+/* Search form *********************************/
+.search-form input[type="search"] {
+	background: var(--nord0);
+	border: 1px solid var(--nord10);
+	box-sizing: border-box;
+	color: var(--nord10);
+	padding: 0.5em 1em;
+	width: 49%;
+}
+
+.search-form input[type="submit"] {
+	background: var(--nord1);
+	border: 1px solid var(--nord10);
+	box-sizing: border-box;
+	color: var(--nord9);
+	padding: 0.5em 1em;
+	width: 49%;
+}
+
+/* Comments ************************************/
+.comment-form label {
+	display: block;
+	margin-bottom: 1em;
+}
+
+.comment-form .comment-form-comment {
+	margin-top: 2em;
+}
+
+.comment-form .comment-form-comment textarea {
+	background: var(--nord0);
+	border-color: var(--nord10);
+	box-sizing: border-box;
+	color: var(--nord10);
+	padding: 0.5em 1em;
+	width: 100%;
+}
+
+.comment-form .form-submit {
+	margin-bottom: 0.5em;
+}
+
+.comment-form .form-submit input[type="submit"] {
+	background: var(--nord1);
+	border-color: var(--nord10);
+	box-sizing: border-box;
+	color: var(--nord9);
+	padding: 0.5em 1em;
+	width: 100%;
+}
+
+/* Pagination **********************************/
+
+.site-content-pagination {
+	margin: 2em 0;
+}
+
+/*******************************************************************************
+ * 8. Footer
+ ******************************************************************************/
+
+#site-footer {
+	color: var(--nord4);
+}
+
+#footer-widget-wrapper {
+	margin-bottom: 1em;
+}
+
+@media screen and (min-width: 580px) {
+
+	#footer-widget-wrapper {
+		display: flex;
+	}
+
+	#footer-widget-wrapper-left,
+	#footer-widget-wrapper-right {
+		padding-right: 2em;
+		width: 50%;
+	}
+}
+
+#footer-credits-wrapper {
+	margin-bottom: 1em;
+}
+

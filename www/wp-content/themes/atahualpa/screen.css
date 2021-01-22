@@ -67,24 +67,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-/* line 9, ../../../../sass/screen.scss */
+/* line 8, ../../../../sass/screen.scss */
 .aligncenter {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 15, ../../../../sass/screen.scss */
+/* line 14, ../../../../sass/screen.scss */
 .alignleft {
   float: left;
 }
 
-/* line 19, ../../../../sass/screen.scss */
+/* line 18, ../../../../sass/screen.scss */
 .alignright {
   float: right;
 }
 
-/* line 23, ../../../../sass/screen.scss */
+/* line 22, ../../../../sass/screen.scss */
 .wp-caption {
   background: #f1f1f1;
   line-height: 18px;
@@ -93,26 +93,66 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   text-align: center;
 }
 
-/* line 31, ../../../../sass/screen.scss */
+/* line 30, ../../../../sass/screen.scss */
 .wp-caption-text {
   color: #888;
   font-size: 12px;
   margin: 5px;
 }
 
-/* line 37, ../../../../sass/screen.scss */
+/* line 36, ../../../../sass/screen.scss */
 .gallery-caption {
   color: #888;
   font-size: 12px;
   margin: 0 0 12px;
 }
 
-/* line 43, ../../../../sass/screen.scss */
+/* line 42, ../../../../sass/screen.scss */
 .sticky {
   font-weight: normal;
 }
 
-/* line 47, ../../../../sass/screen.scss */
+/* line 46, ../../../../sass/screen.scss */
 .bypostauthor {
   font-weight: normal;
+}
+
+/* line 51, ../../../../sass/screen.scss */
+.navigation-top a {
+  font-size: 2em;
+  line-height: 1.4;
+}
+
+/* line 56, ../../../../sass/screen.scss */
+p.tagline {
+  display: none;
+}
+
+/* line 61, ../../../../sass/screen.scss */
+td#right {
+  display: none;
+}
+/* line 65, ../../../../sass/screen.scss */
+td.search-box {
+  display: none;
+}
+
+/* line 69, ../../../../sass/screen.scss */
+.clearfix.rss-box {
+  display: none;
+}
+
+/* line 72, ../../../../sass/screen.scss */
+col.colthree {
+  display: none;
+}
+
+/* line 75, ../../../../sass/screen.scss */
+td#footer {
+  display: none;
+}
+
+/* line 79, ../../../../sass/screen.scss */
+div#respond {
+  background: transparent;
 }
